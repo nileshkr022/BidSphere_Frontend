@@ -13,15 +13,17 @@ const FeaturedAuctions = () => {
         <div className="flex flex-wrap gap-6">
           {allAuctions.slice(0, 8).map((element) => {
             return (
-              <Card
-                title={element.title}
-                imgSrc={element.image?.url}
-                startTime={element.startTime}
-                endTime={element.endTime}
-                startingBid={element.startingBid}
-                id={element._id}
-                key={element._id}
-              />
+              <div className="max-w-sm w-full bg-white p-4 rounded-md"> {/* Added bg-white and padding */}
+                <Card
+                  title={element.title}
+                  imgSrc={element.image?.url}
+                  startTime={element.startTime}
+                  endTime={element.endTime}
+                  startingBid={element.startingBid}
+                  id={element._id}
+                  key={element._id}
+                />
+              </div>
             );
           })}
         </div>

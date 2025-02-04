@@ -26,10 +26,10 @@ const Contact = () => {
 
     emailjs
       .send(
-        "service_v01mtcu",
-        "template_3a1r5xp",
+        "service_js8yvfg",
+        "template_3i33ra8",
         templateParams,
-        "YcOimjllS64zn4ghK"
+        "Ie7xrDB6WtJBvipwd"
       )
       .then(() => {
         toast.success("Thank You! Your message has been sent successfully.");

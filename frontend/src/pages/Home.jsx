@@ -43,7 +43,7 @@ const Home = () => {
               <>
                 <Link
                   to="/sign-up"
-                  className="bg-[#d6482b] font-semibold hover:bg-[#b8381e] rounded-md px-8 flex items-center py-2 text-white  transition-all duration-300"
+                  className="bg-[#d6482b] font-bold text-xl hover:bg-[#b8381e] rounded-md px-8 flex items-center py-2 text-white  transition-all duration-300"
                 >
                   Sign Up
                 </Link>

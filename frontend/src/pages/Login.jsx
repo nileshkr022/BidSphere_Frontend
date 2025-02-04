@@ -29,10 +29,8 @@ const Login = () => {
   return (
     <>
       <section className="w-full ml-0 m-0 h-fit px-5 pt-20 lg:pl-[320px] flex flex-col min-h-screen py-4 justify-center">
-        <div className="bg-white mx-auto w-full h-auto px-2 flex flex-col gap-4 items-center py-4 justify-center rounded-md sm:w-[600px] sm:h-[450px]">
-          <h1
-            className={`text-[#d6482b] text-2xl font-bold mb-2 min-[480px]:text-4xl md:text-6xl xl:text-7xl 2xl:text-8xl`}
-          >
+        <div className="bg-white mx-auto w-full h-auto px-8 py-8 flex flex-col gap-4 items-center justify-center rounded-md sm:w-[600px] sm:h-[450px]">
+          <h1 className="text-[#d6482b] text-2xl font-bold mb-2 min-[480px]:text-4xl md:text-6xl xl:text-7xl 2xl:text-8xl">
             Login
           </h1>
           <form onSubmit={handleLogin} className="flex flex-col gap-5 w-full">
@@ -42,7 +40,7 @@ const Login = () => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="text-[16px] py-2 bg-transparent border-b-[1px] border-b-stone-500 focus:outline-none"
+                className="text-[16px] py-3 px-4 bg-transparent border-[1px] border-stone-500 rounded-md focus:outline-none"
               />
             </div>
             <div className="flex flex-col gap-2">
@@ -51,7 +49,7 @@ const Login = () => {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="text-[16px] py-2 bg-transparent border-b-[1px] border-b-stone-500 focus:outline-none"
+                className="text-[16px] py-3 px-4 bg-transparent border-[1px] border-stone-500 rounded-md focus:outline-none"
               />
             </div>
             <button
