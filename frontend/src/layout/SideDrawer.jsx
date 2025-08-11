@@ -33,7 +33,7 @@ const SideDrawer = () => {
     <>
       <div
         onClick={() => setShow(!show)}
-        className="fixed right-5 top-5 bg-[#D6482B] text-white text-3xl p-2 rounded-md hover:bg-[#b8381e] lg:hidden"
+        className="fixed right-5 top-5 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-3xl p-3 rounded-xl hover:from-purple-700 hover:to-blue-700 lg:hidden z-50 shadow-lg hover:shadow-xl transition-all duration-300"
       >
         <GiHamburgerMenu />
       </div>
@@ -41,122 +41,111 @@ const SideDrawer = () => {
       {/* Side Drawer */}
       <div
         ref={drawerRef}
-        className={`w-[100%] sm:w-[300px] bg-[#f6f4f0] h-full fixed top-0 ${
+        className={`w-[100%] sm:w-[320px] glass-dark h-full fixed top-0 ${
           show ? "left-0" : "left-[-100%]"
-        } transition-all duration-100 p-4 flex flex-col justify-between lg:left-0 border-r-[1px] border-r-stone-500`}
+        } transition-all duration-300 p-6 flex flex-col justify-between lg:left-0 border-r border-white/20 backdrop-blur-xl z-40`}
       >
         <div className="relative">
-          <Link to={"/"}>
-            <h4 className="text-2xl font-semibold mb-4">
-              Bid<span className="text-[#D6482b]">Sphere</span>
+          <Link to={"/"} className="block mb-8">
+            <h4 className="text-3xl font-bold text-white">
+              Bid<span className="gradient-text">Sphere</span>
             </h4>
+            <p className="text-white/60 text-sm mt-1">Premium Auction Platform</p>
           </Link>
-          <ul className="flex flex-col gap-3">
-            <li>
-              <Link to={"/auctions"} className="flex text-xl font-semibold gap-2 items-center hover:text-[#D6482b] hover:transition-all hover:duration-150">
-                <RiAuctionFill /> Auctions
-              </Link>
-            </li>
-            <li>
-              <Link to={"/leaderboard"} className="flex text-xl font-semibold gap-2 items-center hover:text-[#D6482b] hover:transition-all hover:duration-150">
-                <MdLeaderboard /> Leaderboard
-              </Link>
-            </li>
+          
+          <nav className="space-y-2">
+            <NavItem to="/auctions" icon={<RiAuctionFill />} text="Auctions" />
+            <NavItem to="/leaderboard" icon={<MdLeaderboard />} text="Leaderboard" />
+            
             {isAuthenticated && user?.role === "Auctioneer" && (
               <>
-                <li>
-                  <Link to={"/submit-commission"} className="flex text-xl font-semibold gap-2 items-center hover:text-[#D6482b] hover:transition-all hover:duration-150">
-                    <FaFileInvoiceDollar /> Submit Commission
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/create-auction"} className="flex text-xl font-semibold gap-2 items-center hover:text-[#D6482b] hover:transition-all hover:duration-150">
-                    <IoIosCreate /> Create Auction
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/view-my-auctions"} className="flex text-xl font-semibold gap-2 items-center hover:text-[#D6482b] hover:transition-all hover:duration-150">
-                    <FaEye /> View My Auctions
-                  </Link>
-                </li>
+                <NavItem to="/submit-commission" icon={<FaFileInvoiceDollar />} text="Submit Commission" />
+                <NavItem to="/create-auction" icon={<IoIosCreate />} text="Create Auction" />
+                <NavItem to="/view-my-auctions" icon={<FaEye />} text="My Auctions" />
               </>
             )}
+            
             {isAuthenticated && user?.role === "Super Admin" && (
-              <li>
-                <Link to={"/dashboard"} className="flex text-xl font-semibold gap-2 items-center hover:text-[#D6482b] hover:transition-all hover:duration-150">
-                  <MdDashboard /> Dashboard
-                </Link>
-              </li>
+              <NavItem to="/dashboard" icon={<MdDashboard />} text="Dashboard" />
             )}
-          </ul>
+          </nav>
 
           {!isAuthenticated ? (
-            <div className="my-4 flex gap-2">
-              <Link to={"/sign-up"} className="bg-[#D6482B] font-semibold hover:bg-[#b8381e] text-xl py-1 px-4 rounded-md text-white">
+            <div className="my-8 flex flex-col gap-3">
+              <Link to="/sign-up" className="btn-primary text-center">
                 Sign Up
               </Link>
-              <Link to={"/login"} className="text-[#DECCBE] bg-transparent border-[#DECCBE] border-2 hover:bg-[#fffefd] hover:text-[#fdba88] font-bold text-xl py-1 px-4 rounded-md">
+              <Link to="/login" className="btn-secondary text-center text-white">
                 Login
               </Link>
             </div>
           ) : (
-            <div className="my-4 flex gap-4 w-fit" onClick={handleLogout}>
-              <button className="bg-[#D6482B] font-semibold hover:bg-[#b8381e] text-xl py-1 px-4 rounded-md text-white">
+            <div className="my-8">
+              <button onClick={handleLogout} className="btn-primary w-full">
                 Logout
               </button>
             </div>
           )}
 
-          <hr className="mb-4 border-t-[#d6482b]" />
-          <ul className="flex flex-col gap-3">
+          <hr className="mb-6 border-white/20" />
+          
+          <nav className="space-y-2">
             {isAuthenticated && (
-              <li>
-                <Link to={"/me"} className="flex text-xl font-semibold gap-2 items-center hover:text-[#D6482b] hover:transition-all hover:duration-150">
-                  <FaUserCircle /> Profile
-                </Link>
-              </li>
+              <NavItem to="/me" icon={<FaUserCircle />} text="Profile" />
             )}
-            <li>
-              <Link to={"/how-it-works-info"} className="flex text-xl font-semibold gap-2 items-center hover:text-[#D6482b] hover:transition-all hover:duration-150">
-                <SiGooglesearchconsole /> How it works
-              </Link>
-            </li>
-            <li>
-              <Link to={"/about"} className="flex text-xl font-semibold gap-2 items-center hover:text-[#D6482b] hover:transition-all hover:duration-150">
-                <BsFillInfoSquareFill /> About Us
-              </Link>
-            </li>
-          </ul>
+            <NavItem to="/how-it-works-info" icon={<SiGooglesearchconsole />} text="How it works" />
+            <NavItem to="/about" icon={<BsFillInfoSquareFill />} text="About Us" />
+          </nav>
+          
           <IoMdCloseCircleOutline
             onClick={() => setShow(!show)}
-            className="absolute top-0 right-4 text-[28px] sm:hidden cursor-pointer"
+            className="absolute top-0 right-4 text-[28px] sm:hidden cursor-pointer text-white hover:text-red-400 transition-colors"
           />
         </div>
 
         {/* Footer */}
-        <div>
-          <div className="flex gap-2 items-center mb-2">
-            <Link to="https://github.com/nileshkr022" className="bg-white text-stone-500 p-2 text-xl rounded-sm hover:text-black">
-              <FaGithubSquare />
-            </Link>
-            <Link to="https://www.instagram.com/_.nileshhh/" className="bg-white text-stone-500 p-2 text-xl rounded-sm hover:text-pink-500">
-              <RiInstagramFill />
-            </Link>
+        <div className="space-y-4">
+          <div className="flex gap-3">
+            <SocialLink href="https://github.com/nileshkr022" icon={<FaGithubSquare />} />
+            <SocialLink href="https://www.instagram.com/_.nileshhh/" icon={<RiInstagramFill />} />
           </div>
-          <Link to={"/contact"} className="text-stone-500 font-semibold hover:text-[#d6482b]">
-            Contact Us
-          </Link>
-          <p className="text-stone-500">&copy; BidSphere, LLC.</p>
-          <p className="text-stone-500">
-            Designed By{" "}
-            <Link to={"https://www.linkedin.com/in/nileshkr022/"} className="font-semibold hover:text-[#d6482b]">
-              Nilesh Kumar
+          <div className="text-white/60 text-sm space-y-1">
+            <Link to="/contact" className="block hover:text-white transition-colors">
+              Contact Us
             </Link>
-          </p>
+            <p>&copy; BidSphere, LLC.</p>
+            <p>
+              Designed By{" "}
+              <Link to="https://www.linkedin.com/in/nileshkr022/" className="text-white hover:gradient-text transition-colors">
+                Nilesh Kumar
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </>
   );
 };
+
+const NavItem = ({ to, icon, text }) => (
+  <Link
+    to={to}
+    className="flex items-center gap-3 text-white/80 hover:text-white hover:bg-white/10 px-4 py-3 rounded-xl transition-all duration-300 group"
+  >
+    <span className="text-xl group-hover:scale-110 transition-transform">{icon}</span>
+    <span className="font-medium">{text}</span>
+  </Link>
+);
+
+const SocialLink = ({ href, icon }) => (
+  <Link
+    to={href}
+    className="bg-white/10 text-white/80 p-3 text-xl rounded-xl hover:bg-white/20 hover:text-white transition-all duration-300 hover:scale-110"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    {icon}
+  </Link>
+);
 
 export default SideDrawer;

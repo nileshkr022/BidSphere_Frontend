@@ -1,11 +1,12 @@
 import { login } from "@/store/slices/userSlice";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const { loading, isAuthenticated } = useSelector((state) => state.user);
 
@@ -27,41 +28,105 @@ const Login = () => {
   }, [dispatch, isAuthenticated, loading]);
 
   return (
-    <>
-      <section className="w-full ml-0 m-0 h-fit px-5 pt-20 lg:pl-[320px] flex flex-col min-h-screen py-4 justify-center">
-        <div className="bg-white mx-auto w-full h-auto px-8 py-8 flex flex-col gap-4 items-center justify-center rounded-md sm:w-[600px] sm:h-[450px]">
-          <h1 className="text-[#d6482b] text-2xl font-bold mb-2 min-[480px]:text-4xl md:text-6xl xl:text-7xl 2xl:text-8xl">
-            Login
-          </h1>
-          <form onSubmit={handleLogin} className="flex flex-col gap-5 w-full">
-            <div className="flex flex-col gap-2">
-              <label className="text-[16px] text-stone-500">Email</label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="text-[16px] py-3 px-4 bg-transparent border-[1px] border-stone-500 rounded-md focus:outline-none"
-              />
+    <section className="w-full ml-0 m-0 min-h-screen px-5 pt-20 lg:pl-[320px] flex items-center justify-center py-8">
+      <div className="w-full max-w-md">
+        <div className="glass rounded-3xl p-8 fade-in-up">
+          {/* Header */}
+          <div className="text-center mb-8">
+            <h1 className="text-4xl font-bold text-gray-800 mb-2">
+              Welcome <span className="gradient-text">Back</span>
+            </h1>
+            <p className="text-gray-600">Sign in to your account</p>
+          </div>
+
+          {/* Form */}
+          <form onSubmit={handleLogin} className="space-y-6">
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Email Address
+              </label>
+              <div className="relative">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white/80 backdrop-blur-sm transition-all"
+                  placeholder="Enter your email"
+                  required
+                />
+                <div className="absolute right-3 top-3 text-gray-400">
+                  📧
+                </div>
+              </div>
             </div>
-            <div className="flex flex-col gap-2">
-              <label className="text-[16px] text-stone-500">Password</label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="text-[16px] py-3 px-4 bg-transparent border-[1px] border-stone-500 rounded-md focus:outline-none"
-              />
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Password
+              </label>
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white/80 backdrop-blur-sm transition-all"
+                  placeholder="Enter your password"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
+                >
+                  {showPassword ? "🙈" : "👁️"}
+                </button>
+              </div>
             </div>
+
             <button
-              className="bg-[#d6482b] font-semibold hover:bg-[#b8381e] transition-all duration-300 text-xl py-2 px-4 rounded-md text-white mx-auto my-4"
               type="submit"
+              disabled={loading}
+              className="w-full btn-primary py-4 text-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {loading ? "Logging In..." : "Login"}
+              {loading ? (
+                <div className="flex items-center justify-center gap-2">
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  Signing In...
+                </div>
+              ) : (
+                "Sign In"
+              )}
             </button>
           </form>
+
+          {/* Footer */}
+          <div className="mt-8 text-center">
+            <p className="text-gray-600">
+              Don't have an account?{" "}
+              <Link to="/sign-up" className="font-semibold text-purple-600 hover:text-purple-700">
+                Sign up here
+              </Link>
+            </p>
+          </div>
         </div>
-      </section>
-    </>
+
+        {/* Features */}
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="glass rounded-2xl p-4 text-center">
+            <div className="text-2xl mb-2">🔒</div>
+            <div className="text-sm font-semibold text-gray-800">Secure</div>
+          </div>
+          <div className="glass rounded-2xl p-4 text-center">
+            <div className="text-2xl mb-2">⚡</div>
+            <div className="text-sm font-semibold text-gray-800">Fast</div>
+          </div>
+          <div className="glass rounded-2xl p-4 text-center">
+            <div className="text-2xl mb-2">🎯</div>
+            <div className="text-sm font-semibold text-gray-800">Reliable</div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 
