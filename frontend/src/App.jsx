@@ -1,57 +1,109 @@
-import React, { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import SideDrawer from "./layout/SideDrawer";
-import Home from "./pages/Home";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import SignUp from "./pages/SignUp";
-import Login from "./pages/Login";
-import SubmitCommission from "./pages/SubmitCommission";
-import { useDispatch } from "react-redux";
-import { fetchLeaderboard, fetchUser } from "./store/slices/userSlice";
-import HowItWorks from "./pages/HowItWorks";
-import About from "./pages/About";
-import { getAllAuctionItems } from "./store/slices/auctionSlice";
-import Leaderboard from "./pages/Leaderboard";
-import Auctions from "./pages/Auctions";
-import AuctionItem from "./pages/AuctionItem";
-import CreateAuction from "./pages/CreateAuction";
-import ViewMyAuctions from "./pages/ViewMyAuctions";
-import ViewAuctionDetails from "./pages/ViewAuctionDetails";
-import Dashboard from "./pages/Dashboard/Dashboard";
-import Contact from "./pages/Contact";
-import UserProfile from "./pages/UserProfile";
+import { Route, Routes } from 'react-router-dom';
+import './App.css';
+import Navbar from './components/common/Navbar';
+import OpenRoute from './components/core/Auth/OpenRoute';
+import PrivateRoute from './components/core/Auth/PrivateRoute';
+import Home from './pages/Home';
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
+import About from './pages/About';
+import Auctions from './pages/Auctions';
+import Dashboard from './pages/Dashboard';
+import MyProfile from './components/core/Dashboard/MyProfile';
+import MyAuctions from './components/core/Dashboard/MyAuctions'
+import CreateAuction from './components/core/Dashboard/CreateAuction';
+import CreateCategory from './components/core/Dashboard/CreateCategory';
+import AuctionDetails from './pages/AuctionDetails';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { initializeSocket } from './services/socketService';
+import Winnings from './components/core/Dashboard/Winnings';
+import History from './components/core/Dashboard/History';
+import EditAuction from './components/core/Dashboard/EditAuction';
 
 const App = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchUser());
-    dispatch(getAllAuctionItems());
-    dispatch(fetchLeaderboard());
-  }, []);
-  return (
-    <Router>
-      <SideDrawer />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/submit-commission" element={<SubmitCommission />} />
-        <Route path="/how-it-works-info" element={<HowItWorks />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/leaderboard" element={<Leaderboard />} />
-        <Route path="/auctions" element={<Auctions />} />
-        <Route path="/auction/item/:id" element={<AuctionItem />} />
-        <Route path="/create-auction" element={<CreateAuction />} />
-        <Route path="/view-my-auctions" element={<ViewMyAuctions />} />
-        <Route path="/auction/details/:id" element={<ViewAuctionDetails />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/me" element={<UserProfile />} />
-      </Routes>
-      <ToastContainer position="top-right" />
-    </Router>
-  );
+    const { user } = useSelector((state) => state.profile);
+
+    useEffect(() => {
+        if (user) {
+            initializeSocket();
+        }
+    }, [user]);
+
+    return(
+        <div className='min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100'>
+            <Navbar />
+            
+            <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/about' element={<About />} />
+                <Route path='/auctions' element={<Auctions />} />
+                <Route path='/auction/:auctionId' element={<AuctionDetails />}/>
+
+                <Route path='/login' element={
+                    <OpenRoute>
+                        <LoginPage />
+                    </OpenRoute>
+                }/>
+
+                <Route path='/signup' element={
+                    <OpenRoute>
+                        <SignupPage />
+                    </OpenRoute>
+                } />
+
+                <Route path='/dashboard' element={
+                    <PrivateRoute>
+                        <Dashboard />
+                    </PrivateRoute>
+                }>
+
+                    <Route path='/dashboard/my-profile' element={
+                        <PrivateRoute>
+                            <MyProfile />
+                        </PrivateRoute>
+                    } />
+
+                    <Route path='/dashboard/my-auctions' element={
+                        <PrivateRoute>
+                            <MyAuctions />
+                        </PrivateRoute>
+                    } />
+
+                    <Route path='/dashboard/create-auction' element={
+                        <PrivateRoute>
+                            <CreateAuction />
+                        </PrivateRoute>
+                    } />
+
+                    <Route path='/dashboard/edit-auction/:auctionId' element={
+                        <PrivateRoute>
+                            <EditAuction />
+                        </PrivateRoute>
+                    }/>
+
+                    <Route path='/dashboard/auctions-won' element={
+                        <PrivateRoute>
+                            <Winnings />
+                        </PrivateRoute>
+                    } />
+
+                    <Route path='/dashboard/history' element={
+                        <PrivateRoute>
+                            <History />
+                        </PrivateRoute>
+                    } />
+
+                    <Route path='/dashboard/create-category' element={
+                        <PrivateRoute>
+                            <CreateCategory />
+                        </PrivateRoute>
+                    } />
+                
+                </Route>
+            </Routes>
+        </div>
+    )
 };
 
 export default App;

@@ -1,114 +1,89 @@
-# 🚀 BidSphere
+# 🛒 Auctioneer - A Online Auction Platform
 
-**BidSphere** is a full-stack online auction platform where users can list, bid on, and manage auctions. The platform ensures secure transactions, user authentication, and commission tracking.
-
----
-## 🌟 Features
-- 🏷️ **User Authentication** (Register, Login, Logout, Profile Management)
-- 🔥 **Auction Listings** (Create, View, Update, Delete Auctions)
-- 💰 **Bidding System** (Place Bids with Role-Based Access)
-- 📊 **Leaderboard** (Ranks Users Based on Successful Bids)
-- 🔄 **Automated Auction End Handling** (Cron Jobs for Expired Auctions)
-- 💳 **Commission Tracking** (Ensures Fair Transactions for Auctioneers)
+An advanced **MERN Stack** application for hosting and participating in online auctions, with **real-time bidding** powered by **Socket.io**.  
+Users can create auctions, place bids, track live bid updates, and manage their auctioned products — all in a smooth, interactive interface.
 
 ---
-## 📂 Folder Structure
-```
-BidSphere/
-│── backend/               # Node.js + Express Backend
-│   ├── config/            # Configuration Files (Cloudinary, Environment Setup)
-│   ├── controllers/       # Business Logic for API Endpoints
-│   ├── database/          # MongoDB Connection Setup
-│   ├── middleware/        # Authentication & Authorization Middleware
-│   ├── models/            # Mongoose Schemas (User, Auction, Bids, Commission)
-│   ├── router/            # API Route Handlers
-│   ├── utils/             # Utility Functions
-│   ├── app.js             # Express App Configuration
-│   ├── server.js          # Main Server File
-│   ├── endedAuctionCron.js # Automated Auction Expiry Handler
-│   ├── verifyCommissionCron.js # Commission Verification Cron Job
-│
-│── frontend/              # React Frontend
-│   ├── src/               # Source Code
-│   ├── components/        # Reusable UI Components
-│   ├── pages/             # Page-Level Components
-│   ├── api/               # API Calls to Backend
-│   ├── App.js             # Main React Application
-│   ├── index.js           # Entry Point
-│
-│── .env                   # Environment Variables
-│── package.json           # Dependencies & Scripts
-│── README.md              # Documentation (You are here!)
-```
+
+## 🌐 Live Project
+https://auctioneer-client.vercel.app/
 
 ---
-## 🚀 Installation & Setup
 
-### **Prerequisites**
-- Node.js & npm
-- MongoDB Atlas or Local MongoDB
-- Cloudinary Account (for Image Uploads)
+## 📖 Overview
+The **Online Auction Platform** is designed to replicate real-world auction systems where multiple participants can bid on items in **real-time**.  
+It ensures instant updates, fair bidding, and seamless auction management.
 
-### **Backend Setup**
+The system includes:
+- Real-time bid synchronization using WebSockets
+- Auction status tracking (Active, Expired)
+- Automatic winner assignment when the auction ends
+- User authentication & authorization using Firebase Authentication
+- Secure CRUD operations for products and bids
+
+---
+
+## ✨ Features
+
+### 👤 User Features
+- **Sign Up / Login** (JWT authentication with httpOnly cookies)
+- **Sign Up / Login using Google** (Authentication using Firebase Authentication)
+- **Browse Auctions** – View available products for bidding
+- **Place Bids in Real-Time** – Compete with others instantly
+- **View Bid History** – Track offers made
+- **Profile Management** – Update personal details
+
+### 🛍 Seller Features
+- **Create Auctions** – Upload product images, set starting price & auction duration
+- **Edit / Delete Auctions** – Modify product details before bidding starts
+- **Track Live Bids** – See highest bidder in real-time
+- **Automatic Auction Closure** – System marks auction as expired when time runs out
+
+### 🔄 Real-Time Features
+- **Instant Bid Updates** – No page refresh needed
+- **Live Auction Status** – "Active", "Expired", "Sold"
+- **Winner Declaration** – Highest bidder assigned automatically
+
+---
+
+## 🛠 Tech Stack
+
+**Frontend:**
+- React.js
+- Redux Toolkit (State Management)
+- Axios
+- Tailwind CSS
+
+**Backend:**
+- Node.js
+- Express.js
+- MongoDB + Mongoose
+- Socket.io (Real-Time Communication)
+- Cloudinary (for product images)
+
+**Deployment:**
+- **Frontend:** Vercel
+- **Backend:** Vercel
+- **Database:** MongoDB Compass
+
+---
+
+## 📸 Screenshots
+<img width="1915" height="918" alt="A1" src="https://github.com/user-attachments/assets/2ce12c8e-7650-421a-b062-eaf2c1290a4b" />
+<img width="1909" height="919" alt="A2" src="https://github.com/user-attachments/assets/6a8d0c5e-ce7d-4228-9909-b5dd8a359a4f" />
+---
+
+## ⚙️ Installation & Running Locally
+
+### 1️⃣ Clone the repository
 ```bash
-cd backend
-npm install
-npm start
+git clone https://github.com/rahil1801/auctioneer.git
+cd client && npm install && npm run dev
+cd server && npm install && npm run start
+
+Make sure to use your own api-keys. Look into .env.example file to know about the APIs used in this project
 ```
-Create a `.env` file in `backend/` and add:
-```
-MONGO_URI=your_mongodb_connection
-JWT_SECRET=your_jwt_secret
-CLOUDINARY_NAME=your_cloudinary_name
-CLOUDINARY_API_KEY=your_cloudinary_key
-CLOUDINARY_API_SECRET=your_cloudinary_secret
-```
-
-### **Frontend Setup**
-```bash
-cd frontend
-npm install
-npm start
-```
-
 ---
-## 📌 API Endpoints
 
-### **User APIs**
-- `POST /register` → Register a new user
-- `POST /login` → Authenticate and login user
-- `GET /me` → Fetch user profile (Requires Authentication)
-- `GET /leaderboard` → Fetch leaderboard rankings
-
-### **Auction APIs**
-- `POST /create` → Create an auction item (Auctioneer only)
-- `GET /allitems` → Retrieve all auction items
-- `GET /auction/:id` → Fetch a specific auction item
-- `DELETE /delete/:id` → Remove an auction (Auctioneer only)
-- `PUT /item/republish/:id` → Republish an auction item
-
-### **Bidding APIs**
-- `POST /place/:id` → Place a bid on an auction item
-
-### **Commission APIs**
-- `POST /proof` → Submit commission proof (Auctioneer only)
-
----
-## 🎯 Future Enhancements
-- 🔐 **OAuth Authentication** (Google, GitHub Login)
-- 📈 **Advanced Analytics** for Auction Performance
-- 📜 **Real-Time Bidding with WebSockets**
-- 🌐 **Multi-Language Support**
-
----
-## 🤝 Contributing
-1. **Fork the repository**
-2. **Create a new branch** (`feature-xyz`)
-3. **Commit changes**
-4. **Push and create a PR!**
-
----
-## 📞 Contact
-- **Developer:** [Nilesh Kumar](https://github.com/nileshkr022)
-- **GitHub Repo:** [BidSphere](https://github.com/nileshkr022/BidSphere)
-
+## 📖 Contributing
+Pull requests are welcome. For significant changes, please open an issue first to discuss what you’d like to change.
