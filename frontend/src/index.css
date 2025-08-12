@@ -52,14 +52,7 @@
     border-color: rgb(229 231 235);
   }
   body {
-    @apply bg-background text-foreground;
-    background: linear-gradient(86deg, rgba(246, 244, 240), #f6f4f0);
-    overflow-x: hidden;
-    font-family: "Inter", sans-serif;
-    font-optical-sizing: auto;
-  }
-  #root {
-    overflow-x: hidden;
-    width: 100%;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
   }
 }
