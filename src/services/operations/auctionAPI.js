@@ -156,23 +156,24 @@ export const createCategory = async (data) => {
 
 
 export const fetchCategories = async () => {
-    let result = [];
-    try{
-        const response = await apiConnector("GET", FETCH_ALL_CATEGORY);
-        //console.log("POST CATEGORIES API RESPONSE", response);
+  let result = [];
+  try {
+    const response = await apiConnector("GET", FETCH_ALL_CATEGORY);
 
-        if(!response?.data?.success){
-            throw new Error(response.data.message);
-        }
-        result = response?.data?.categories;
-        //console.log("Result", result);
+    console.log("RAW FETCH_ALL_CATEGORY RESPONSE:", response);
+
+    if (!response?.data?.success) {
+      throw new Error(response.data.message);
     }
-    catch(error){
-        //console.log("FETCH POST CATEGORIES API ERROR", error);
-        toast.error("Failed to display Category")
-    }
-    return result;
-}
+    result = response?.data?.categories; // may need adjusting here
+    console.log("Parsed categories:", result);
+  } catch (error) {
+    toast.error("Failed to display Category");
+  }
+  return result;
+};
+
+
 
 export const fetchNotifications = async () => {
     let result = [];

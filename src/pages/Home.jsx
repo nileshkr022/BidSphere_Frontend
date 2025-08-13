@@ -270,7 +270,7 @@ const Home = () => {
             <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl font-bold text-white mb-6">Ready to Start Your Collection?</h2>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-                Join thousands of collectors who trust Auctioneer for their most valuable acquisitions.
+                Join thousands of collectors who trust BidSphere for their most valuable acquisitions.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link to="/signup">
@@ -295,7 +295,7 @@ const Home = () => {
                 <div>
                 <div className="flex items-center space-x-2 mb-4">
                     <FaGavel className="h-8 w-8 text-blue-400" />
-                    <span className="text-2xl font-bold">Auctioneer</span>
+                    <span className="text-2xl font-bold">BidSphere</span>
                 </div>
                 <p className="text-slate-400 mb-4">
                     The world's premier online auction platform for collectors and enthusiasts.
@@ -342,7 +342,7 @@ const Home = () => {
             </div>
 
             <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p className="text-slate-400 mb-4 md:mb-0">© 2025 Auctioneer. All rights reserved.</p>
+                <p className="text-slate-400 mb-4 md:mb-0">© 2025 BidSphere. All rights reserved.</p>
                 <div className="flex space-x-6">
                 <a href="#" className="text-slate-400 hover:text-white transition-colors">
                     Privacy Policy

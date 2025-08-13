@@ -7,7 +7,7 @@ import { getUserWinnings } from '../../../services/operations/userAPI';
 import { HiOutlineTrophy } from "react-icons/hi2";
 import { FaCrown } from "react-icons/fa";
 import { RiAuctionLine } from "react-icons/ri";
-import { AiOutlineDollar } from "react-icons/ai";
+import { HiCurrencyRupee  } from "react-icons/hi";
 import { BiTime } from "react-icons/bi";
 
 const Winnings = () => {
@@ -187,7 +187,7 @@ const Winnings = () => {
                                             <div className="space-y-3">
                                                 <div className="grid grid-cols-2 gap-4 text-sm">
                                                     <div className="flex items-center gap-2">
-                                                        <AiOutlineDollar className="w-4 h-4 text-green-600" />
+                                                        <HiCurrencyRupee  className="w-4 h-4 text-green-600" />
                                                         <div>
                                                             <span className="text-gray-600">Final Price:</span>
                                                             <p className="font-semibold text-green-600">${item.finalPrice?.toLocaleString() || 0}</p>

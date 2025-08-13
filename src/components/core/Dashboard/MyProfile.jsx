@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '../../ui/card';
 import { Button } from '../../ui/button';
 import { deleteUserAccount, getUserProfile } from '../../../services/operations/userAPI';
 import { formatDate } from "../../../services/formatDate";
-import { FaUser, FaTrophy, FaGavel, FaEye, FaClock, FaDollarSign } from "react-icons/fa";
+import { FaUser, FaTrophy, FaGavel, FaEye, FaClock, FaRupeeSign  } from "react-icons/fa";
 import { RiAuctionLine } from "react-icons/ri";
 import { BiTime } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
@@ -226,8 +226,8 @@ const MyProfile = () => {
                                 </Card>
                                 <Card className="bg-gradient-to-r from-orange-50 to-orange-100 border-orange-200">
                                     <CardContent className="p-6 text-center">
-                                        <FaDollarSign className="w-8 h-8 text-orange-600 mx-auto mb-2" />
-                                        <p className="text-2xl font-bold text-orange-600">${statistics.totalWinningsValue?.toLocaleString() || 0}</p>
+                                        <FaRupeeSign  className="w-8 h-8 text-orange-600 mx-auto mb-2" />
+                                        <p className="text-2xl font-bold text-orange-600">₹{statistics.totalWinningsValue?.toLocaleString() || 0}</p>
                                         <p className="text-sm text-orange-600">Total Value</p>
                                     </CardContent>
                                 </Card>
@@ -296,7 +296,7 @@ const MyProfile = () => {
                                                             Bid placed on {activity.product?.title || "Unknown Item"}
                                                         </p>
                                                         <p className="text-sm text-gray-600">
-                                                            ${activity.amount} • {formatDate(activity.createdAt)}
+                                                            ₹{activity.amount} • {formatDate(activity.createdAt)}
                                                         </p>
                                                     </div>
                                                 </motion.div>
@@ -348,14 +348,14 @@ const MyProfile = () => {
                                 <Card className="bg-white/80 backdrop-blur-sm">
                                     <CardHeader>
                                         <CardTitle className="flex items-center gap-2">
-                                            <FaDollarSign className="w-5 h-5 text-green-600" />
+                                            <FaRupeeSign  className="w-5 h-5 text-green-600" />
                                             Financial Summary
                                         </CardTitle>
                                     </CardHeader>
                                     <CardContent className="space-y-4">
                                         <div className="flex justify-between items-center">
                                             <span className="text-gray-600">Total Winnings Value</span>
-                                            <span className="font-bold text-green-600">${statistics.totalWinningsValue?.toLocaleString() || 0}</span>
+                                            <span className="font-bold text-green-600">₹{statistics.totalWinningsValue?.toLocaleString() || 0}</span>
                                         </div>
                                         <div className="flex justify-between items-center">
                                             <span className="text-gray-600">Total Bids Placed</span>
