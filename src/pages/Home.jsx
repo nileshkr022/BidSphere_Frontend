@@ -146,9 +146,9 @@ const Home = () => {
                         className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
                     >
                         {[
-                            { label: "Active Auctions", value: "12,500+" },
-                            { label: "Happy Bidders", value: "85,000+" },
-                            { label: "Items Sold", value: "$2.5M+" },
+                            { label: "Active Auctions", value: "1000+" },
+                            { label: "Happy Bidders", value: "25000+" },
+                            { label: "Items Sold", value: "₹2.5Cr+" },
                         ].map((stat, index) => (
                             <div key={index} className="text-center">
                                 <div className="text-3xl font-bold text-slate-800 mb-2">{stat.value}</div>
@@ -163,7 +163,7 @@ const Home = () => {
         <AnimatedSection className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
             <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-                <h2 className="text-4xl font-bold text-slate-800 mb-4">Why Choose AuctionHub?</h2>
+                <h2 className="text-4xl font-bold text-slate-800 mb-4">Why Choose BidSphere?</h2>
                 <p className="text-xl text-slate-600 max-w-2xl mx-auto">
                     Experience the future of online auctions with our cutting-edge platform
                 </p>
