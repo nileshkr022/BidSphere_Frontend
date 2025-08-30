@@ -30,23 +30,24 @@ const SignupPage = () => {
   const {loading} = useSelector((state) => state.profile);
 
   const handleImageChange = (e) => {
-    const file = e.target.files[0];
+  const file = e.target.files[0];
 
-    if(file){
-      setValue("image", file);
-      const reader = new FileReader();
-      reader.onloadend = () => setPreview(reader.result);
-      reader.readAsDataURL(file);
-    }
+  if (file) {
+    setValue("file", file);   
+    const reader = new FileReader();
+    reader.onloadend = () => setPreview(reader.result);
+    reader.readAsDataURL(file);
   }
+};
 
   const removeImage = () => {
-    setValue("image", null);
-    setPreview(null);
-    if(fileInputRef.current){
-      fileInputRef.current.value = "";
-    }
+  setValue("file", null);   
+  setPreview(null);
+  if (fileInputRef.current) {
+    fileInputRef.current.value = "";
   }
+};
+
 
   const {
       register,
@@ -84,9 +85,9 @@ const SignupPage = () => {
           formData.append("confirmPassword", data.confirmPassword);
           formData.append("role", role);
 
-          if(data.image instanceof File){
-              formData.append("image", data.image);
-          }
+          if (data.file instanceof File) {
+  formData.append("file", data.file);  
+}
 
           // console.log("FormData entries:", [...formData.entries()]);
           await dispatch(signup(formData, navigate));
