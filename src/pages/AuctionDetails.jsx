@@ -340,7 +340,7 @@ const AuctionDetails = () => {
         <motion.div className='w-full flex items-center rounded-lg bg-[#F6F6F6] px-5 py-6 shadow-md' whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 200 }}>
           <div className='w-[50%] flex flex-col gap-2'>
             <h1 className='text-[#515151] text-base font-semibold'>Starting Price</h1>
-            <p className='text-[#515151] text-3xl font-bold'>${auctionData?.startingPrice ?? '0'}</p>
+            <p className='text-[#515151] text-3xl font-bold'>₹{auctionData?.startingPrice ?? '0'}</p>
 
             <div className='flex items-center mt-2'>
               <div className='flex -space-x-3'>
@@ -376,7 +376,7 @@ const AuctionDetails = () => {
             <h1 className='text-[#515151] text-base font-semibold'>Current Bid Price</h1>
 
             <motion.p className='text-[#515151] text-3xl font-bold' animate={{ scale: [1, 1.03, 1] }} transition={{ repeat: Infinity, duration: 2 }}>
-              ${auctionData?.currentBid ?? '0'}
+              ₹{auctionData?.currentBid ?? '0'}
             </motion.p>
 
             <motion.div className='w-full flex gap-2 text-red-600 items-center px-2 py-2 bg-red-200 rounded-md' animate={{ opacity: [1, 0.85, 1] }} transition={{ repeat: Infinity, duration: 1.5 }}>
@@ -432,7 +432,7 @@ const AuctionDetails = () => {
                           animate={isHighlighted ? { scale: [1, 1.08, 1] } : {}}
                           transition={{ repeat: isHighlighted ? Infinity : 0, duration: 1.2 }}
                         >
-                          ${bid?.amount}
+                          ₹{bid?.amount}
                         </motion.div>
 
                         {user?.id === bid?.bidder?._id && (
@@ -462,7 +462,7 @@ const AuctionDetails = () => {
 
       <BidModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className='flex flex-col gap-2'>
-          <h1 className='text-sm text-black font-medium'>Highest Bid: ${auctionData?.currentBid ?? 0}</h1>
+          <h1 className='text-sm text-black font-medium'>Highest Bid: ₹{auctionData?.currentBid ?? 0}</h1>
           <h2 className='text-blue-600 mt-3 text-3xl font-bold'>Bid Amount</h2>
 
           <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 mt-3">
@@ -489,7 +489,7 @@ const AuctionDetails = () => {
 
       <BidModal isOpen={isEditModalOpen} onClose={() => { setIsEditModalOpen(false); setEditingBid(null); }}>
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className='flex flex-col gap-2'>
-          <h1 className='text-sm text-black font-medium'>Current Bid: ${editingBid?.amount}</h1>
+          <h1 className='text-sm text-black font-medium'>Current Bid: ₹{editingBid?.amount}</h1>
           <h2 className='text-blue-600 mt-3 text-3xl font-bold'>Edit Bid Amount</h2>
 
           <form onSubmit={handleEditSubmit(handleEditBid)} className="flex flex-col gap-4 mt-3">

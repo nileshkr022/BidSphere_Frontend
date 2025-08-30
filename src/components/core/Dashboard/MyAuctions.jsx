@@ -207,14 +207,14 @@ const MyAuctions = () => {
                                                     loading="lazy"
                                                 />
                                                 <div className="absolute top-2 left-2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg">
-                                                    <span className="text-lg font-bold text-green-600">${auction.startingPrice}</span>
+                                                    <span className="text-lg font-bold text-green-600">₹{auction.startingPrice}</span>
                                         </div>
                                     </div>
 
                                             <div className="space-y-2">
                                                 <div className="flex items-center justify-between text-sm">
                                                     <span className="text-gray-600">Current Bid:</span>
-                                                    <span className="font-semibold text-blue-600">${auction.currentBid || auction.startingPrice}</span>
+                                                    <span className="font-semibold text-blue-600">₹{auction.currentBid || auction.startingPrice}</span>
                                                 </div>
                                                 <div className="flex items-center justify-between text-sm">
                                                     <span className="text-gray-600">Ends:</span>

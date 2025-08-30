@@ -209,7 +209,7 @@ const Home = () => {
                                 <p className="text-slate-600 mb-2 line-clamp-2">{auction.description}</p>
                                 <div className="flex items-center gap-2 mb-2">
                                     <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">{auction.category?.name}</span>
-                                    <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">${auction.startingPrice}</span>
+                                    <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">₹{auction.startingPrice}</span>
                                 </div>
                                 <div className="flex items-center gap-2 text-xs text-slate-500 mb-4">
                                     <span>By {auction.seller?.firstName} {auction.seller?.lastName}</span>

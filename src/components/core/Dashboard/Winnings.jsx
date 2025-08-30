@@ -101,14 +101,14 @@ const Winnings = () => {
                     </Card>
                     <Card className="bg-gradient-to-r from-green-50 to-green-100 border-green-200">
                         <CardContent className="p-4 text-center">
-                            <p className="text-2xl font-bold text-green-600">${statistics.totalValue?.toLocaleString() || 0}</p>
+                            <p className="text-2xl font-bold text-green-600">₹{statistics.totalValue?.toLocaleString() || 0}</p>
                             <p className="text-sm text-green-600">Total Value</p>
                         </CardContent>
                     </Card>
                     <Card className="bg-gradient-to-r from-blue-50 to-blue-100 border-blue-200">
                         <CardContent className="p-4 text-center">
                             <p className="text-2xl font-bold text-blue-600">
-                                ${statistics.totalSavings?.toLocaleString() || 0}
+                                ₹{statistics.totalSavings?.toLocaleString() || 0}
                             </p>
                             <p className="text-sm text-blue-600">Total Savings</p>
                         </CardContent>
@@ -116,7 +116,7 @@ const Winnings = () => {
                     <Card className="bg-gradient-to-r from-purple-50 to-purple-100 border-purple-200">
                         <CardContent className="p-4 text-center">
                             <p className="text-2xl font-bold text-purple-600">
-                                ${statistics.averageSavings || 0}
+                                ₹{statistics.averageSavings || 0}
                             </p>
                             <p className="text-sm text-purple-600">Avg. Savings</p>
                         </CardContent>
@@ -177,10 +177,10 @@ const Winnings = () => {
                                                     loading="lazy"
                                                 />
                                                 <div className="absolute top-2 left-2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg">
-                                                    <span className="text-lg font-bold text-green-600">${item.finalPrice?.toLocaleString() || 0}</span>
+                                                    <span className="text-lg font-bold text-green-600">₹{item.finalPrice?.toLocaleString() || 0}</span>
                                                 </div>
                                                 <div className="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded-lg text-xs font-medium">
-                                                    -${getSavings(item.finalPrice || 0, item.originalPrice || 0).toLocaleString()}
+                                                    -₹{getSavings(item.finalPrice || 0, item.originalPrice || 0).toLocaleString()}
                                                 </div>
                                             </div>
 
@@ -190,14 +190,14 @@ const Winnings = () => {
                                                         <HiCurrencyRupee  className="w-4 h-4 text-green-600" />
                                                         <div>
                                                             <span className="text-gray-600">Final Price:</span>
-                                                            <p className="font-semibold text-green-600">${item.finalPrice?.toLocaleString() || 0}</p>
+                                                            <p className="font-semibold text-green-600">₹{item.finalPrice?.toLocaleString() || 0}</p>
                                                         </div>
                                                     </div>
                                                     <div className="flex items-center gap-2">
                                                         <RiAuctionLine className="w-4 h-4 text-blue-600" />
                                                         <div>
                                                             <span className="text-gray-600">Original Price:</span>
-                                                            <p className="font-semibold text-blue-600">${item.originalPrice?.toLocaleString() || 0}</p>
+                                                            <p className="font-semibold text-blue-600">₹{item.originalPrice?.toLocaleString() || 0}</p>
                                                         </div>
                                                     </div>
                                                 </div>

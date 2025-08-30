@@ -207,7 +207,7 @@ const History = () => {
                                                                 {item.title}
                                                             </h3>
                                                             <p className="text-sm text-gray-600">
-                                                                ${item.amount?.toLocaleString() || 0}
+                                                                ₹{item.amount?.toLocaleString() || 0}
                                                             </p>
                                                         </div>
                                                         <div className="flex items-center gap-2">

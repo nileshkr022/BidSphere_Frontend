@@ -31,7 +31,7 @@ const ExampleUsage = () => {
         </CardContent>
         <CardFooter className="flex justify-between">
           <div className="text-sm text-muted-foreground">
-            Current Bid: $15,000
+            Current Bid: ₹15,000
           </div>
           <Button>Place Bid</Button>
         </CardFooter>

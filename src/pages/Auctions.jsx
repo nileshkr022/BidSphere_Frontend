@@ -145,7 +145,7 @@ const Auctions = () => {
                       {auction.category?.name || "Uncategorized"}
                     </span>
                     <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">
-                      ${auction.startingPrice}
+                      ₹{auction.startingPrice}
                     </span>
                   </div>
                   <span className="text-xs text-slate-500 mb-4">
